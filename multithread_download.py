@@ -54,7 +54,7 @@ def multi_thread_download(url, save_path, num_threads=8):
 # -------- 调用示例 --------
 if __name__ == "__main__":
     # 替换为你需要下载的文件链接
-    target_url = "https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" 
+    target_url = "https://example.com/file.zip" 
     # 替换为你的保存路径和文件名
-    save_file = "downloads\wsl_update_x64.msi" 
+    save_file = "downloads/file.zip" 
     multi_thread_download(target_url, save_file, num_threads=8)
