@@ -21,6 +21,13 @@ def multi_thread_download(url, save_path, num_threads=8):
         raise ValueError("无法获取文件大小，该链接不支持分片下载")
     
     # 2. 创建空文件预占空间
+
+    # ===== 添加目录自动创建逻辑 =====
+    save_dir = os.path.dirname(save_path)
+    # 如果保存目录不为空且不存在，自动创建
+    if save_dir and not os.path.exists(save_dir):
+        os.makedirs(save_dir, exist_ok=True)
+    # 原来的创建文件代码不变    
     with open(save_path, 'wb') as f:
         f.truncate(total_size)
     
@@ -47,7 +54,7 @@ def multi_thread_download(url, save_path, num_threads=8):
 # -------- 调用示例 --------
 if __name__ == "__main__":
     # 替换为你需要下载的文件链接
-    target_url = "https://example.com/large_file.zip" 
+    target_url = "https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" 
     # 替换为你的保存路径和文件名
-    save_file = "/downloads/large_file.zip" 
+    save_file = "downloads\wsl_update_x64.msi" 
     multi_thread_download(target_url, save_file, num_threads=8)
